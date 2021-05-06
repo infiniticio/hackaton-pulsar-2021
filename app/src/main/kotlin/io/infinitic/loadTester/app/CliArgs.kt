@@ -5,20 +5,18 @@ package io.infinitic.loadTester.app
 
 import com.xenomachina.argparser.ArgParser
 
-enum class Version {
+enum class Action {
   SetupPulsar,
   Launcher,
-  Workflow,
-  Task,
+  Worker
 }
 
 class CliArgs(parser: ArgParser) {
   val version by parser.mapping(
-      "--setup-pulsar" to Version.SetupPulsar,
-      "--launcher" to Version.Launcher,
-      "--workflow" to Version.Workflow,
-      "--task" to Version.Task,
-      help = "which version code to run")
+      "--setup-pulsar" to Action.SetupPulsar,
+      "--launcher" to Action.Launcher,
+      "--worker" to Action.Worker,
+      help = "which action code to run")
   val port by parser.storing("-p", "--port", help = "port of the webserver") { toInt() }
   val configFilePath by parser.storing("-f", "--config-file", help = "path for config files")
 }

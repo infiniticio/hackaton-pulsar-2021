@@ -11,6 +11,7 @@ plugins {
 dependencies {
     implementation(Libs.Infinitic.pulsar)
     implementation(Libs.Infinitic.client)
+    implementation(Libs.Coroutines.core)
 
     api(project(":config"))
 }

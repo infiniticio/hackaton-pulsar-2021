@@ -12,20 +12,20 @@ class HackatonWkfImpl : Workflow(), HackatonWkf {
   private val supplierAAAService = newTask<SupplierAAA>()
   private val supplierBBBService = newTask<SupplierBBB>()
 
-  override fun reserveFromFastestSupplier(product: String) {
+  override fun handle(data: String) {
     inline { PrometheusRegistry.registry.counter("workflow_start").increment() }
     val supplierAAA = async {
-      supplierAAAService.reserveStock(product)
-      supplierAAAService.getProduct(product)
+      supplierAAAService.reserveStock(data)
+      supplierAAAService.getProduct(data)
     }
     val supplierBBB = async {
-      supplierBBBService.reserveStock(product)
-      supplierBBBService.getProduct(product)
+      supplierBBBService.reserveStock(data)
+      supplierBBBService.getProduct(data)
     }
     (supplierAAA or supplierBBB).await()
     when {
-      supplierAAA.isCompleted() -> supplierBBBService.cancelStock(product)
-      supplierBBB.isCompleted() -> supplierAAAService.cancelStock(product)
+      supplierAAA.isCompleted() -> supplierBBBService.cancelStock(data)
+      supplierBBB.isCompleted() -> supplierAAAService.cancelStock(data)
     }
     inline { PrometheusRegistry.registry.counter("workflow_end").increment() }
   }

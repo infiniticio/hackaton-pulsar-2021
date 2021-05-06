@@ -4,11 +4,56 @@
 package io.infinitic.loadTester.launcher
 
 import io.infinitic.clients.InfiniticClient
+import io.infinitic.config.loaders.loadConfigFromFile
 import io.infinitic.loadTester.config.LauncherConfig
+import io.infinitic.loadTester.config.Shape
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
-class Launcher(val client: InfiniticClient) {
-    fun run(config: LauncherConfig) {
-        val w = client.newWorkflow(config.workflow.klass)
-//        w.async
+class Launcher(
+    private val client: InfiniticClient,
+    private val config: LauncherConfig
+    ) {
+    companion object {
+        @JvmStatic
+        fun fromConfigFile(file: String): Launcher {
+            val client = io.infinitic.pulsar.InfiniticClient.fromConfigFile(file)
+
+            val config = loadConfigFromFile<LauncherConfig>(listOf(file))
+
+            return Launcher(client, config)
+        }
+    }
+
+    fun start() = runBlocking {
+
+        var startMillis = 0L
+        var startIndex = 0
+
+        config.scenario.launches.forEach {
+            val increment: Long = it.duration.toMillis() / it.number
+
+            when(it.shape) {
+                Shape.flat -> {
+                    repeat(it.number) { index ->
+                        val delay = startMillis + index * increment
+                        val i = startIndex + index
+                        launch {
+                            delay(delay)
+                            dispatch(i)
+                            println(i)
+                        }
+                    }
+                }
+            }
+            startMillis += it.duration.toMillis()
+            startIndex += it.number
+        }
+    }
+
+    fun dispatch(index: Int) {
+        val w = client.newWorkflow(config.scenario.klass)
+        client.async(w) { handle("$index") }
     }
 }

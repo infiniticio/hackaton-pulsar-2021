@@ -12,3 +12,28 @@ pulsar:
   serviceHttpUrl: http://localhost:8080
   tenant: infinitic
   namespace: dev
+
+tasks:
+  - name: io.infinitic.loadTester.engine.supplier.SupplierAAA
+    class: io.infinitic.loadTester.engine.supplier.SupplierAAAImpl
+    concurrency: 1
+  - name: io.infinitic.loadTester.engine.supplier.SupplierBBB
+    class: io.infinitic.loadTester.engine.supplier.SupplierBBBImpl
+    concurrency: 1
+
+workflows:
+  - name: io.infinitic.loadTester.engine.workflow.HackatonWkf
+    class: io.infinitic.loadTester.engine.workflow.HackatonWkfImpl
+    concurrency: 1
+
+scenario:
+  name: io.infinitic.loadTester.engine.workflow.HackatonWkf
+
+  launches:
+    - duration: 10 seconds
+      number: 100
+      shape: flat
+    - duration: 10 seconds
+      number: 100
+      shape: flat
+

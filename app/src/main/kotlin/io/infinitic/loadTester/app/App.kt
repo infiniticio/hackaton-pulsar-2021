@@ -6,6 +6,7 @@ package io.infinitic.loadTester.app
 import com.xenomachina.argparser.ArgParser
 import com.xenomachina.argparser.mainBody
 import io.infinitic.loadTester.app.webserver.Http4kHttpServer
+import io.infinitic.loadTester.launcher.Launcher
 import io.infinitic.pulsar.InfiniticWorker
 import org.slf4j.LoggerFactory
 import setupPulsar
@@ -17,10 +18,9 @@ fun main(args: Array<String>) = mainBody {
         Http4kHttpServer(port).startServer()
         logger.info("Webserver started")
         when (version) {
-            Version.SetupPulsar -> setupPulsar(configFilePath)
-            Version.Launcher -> TODO()
-            Version.Workflow -> InfiniticWorker.fromConfigFile(configFilePath).start()
-            Version.Task -> InfiniticWorker.fromConfigFile(configFilePath).start()
+            Action.SetupPulsar -> setupPulsar(configFilePath)
+            Action.Launcher -> Launcher.fromConfigFile(configFilePath).start()
+            Action.Worker -> InfiniticWorker.fromConfigFile(configFilePath).start()
         }
     }
 }

@@ -1,0 +1,11 @@
+
+workflow:
+  name: blabl
+
+launches:
+  - duration: 10 seconds
+    number: 100
+    shape: flat
+  - duration: 10 seconds
+    number: 100
+    shape: flat

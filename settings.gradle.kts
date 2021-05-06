@@ -1,5 +1,5 @@
 rootProject.name = "infinitic-load-tester"
 
-include("app")
 include("launcher")
-include("utilities")
+include("workflow")
+include("app")

@@ -52,7 +52,7 @@ class Launcher(
         }
     }
 
-    fun dispatch(index: Int) {
+    private fun dispatch(index: Int) {
         val w = client.newWorkflow(config.scenario.klass)
         client.async(w) { handle("$index") }
     }

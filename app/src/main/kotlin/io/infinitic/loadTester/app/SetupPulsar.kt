@@ -6,6 +6,7 @@ fun setupPulsar(configFilePath: String) {
   logger.info("Setup Pulsar")
   val infiniticAdmin = InfiniticAdmin.fromConfigFile(configFilePath)
   infiniticAdmin.setupPulsar()
+  infiniticAdmin.printTopicStats()
   infiniticAdmin.close()
   logger.info("Setup Finished")
 }

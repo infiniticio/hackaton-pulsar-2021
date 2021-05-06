@@ -3,11 +3,11 @@
  */
 package io.infinitic.loadTester.utilities
 
-import io.infinitic.loadTester.launcher.LinkedList
+import io.infinitic.loadTester.launcher.Launcher
 
 class JoinUtils {
     companion object {
-        fun join(source: LinkedList): String {
+        fun join(source: Launcher): String {
             val result = StringBuilder()
             for (i in 0 until source.size()) {
                 if (result.isNotEmpty()) {

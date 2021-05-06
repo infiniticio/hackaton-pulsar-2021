@@ -3,13 +3,13 @@
  */
 package io.infinitic.loadTester.utilities
 
-import io.infinitic.loadTester.launcher.LinkedList
+import io.infinitic.loadTester.launcher.Launcher
 
 class SplitUtils {
     companion object {
-        fun split(source: String): LinkedList {
+        fun split(source: String): Launcher {
             var lastFind = 0
-            val result = LinkedList()
+            val result = Launcher()
 
             var currentFind = source.indexOf(" ", lastFind)
             while (currentFind != -1) {
@@ -29,7 +29,7 @@ class SplitUtils {
             return result
         }
 
-        private fun addIfValid(token: String, list: LinkedList) {
+        private fun addIfValid(token: String, list: Launcher) {
             if (isTokenValid(token)) {
                 list.add(token)
             }

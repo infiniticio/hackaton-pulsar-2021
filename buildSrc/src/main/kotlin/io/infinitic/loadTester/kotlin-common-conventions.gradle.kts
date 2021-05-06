@@ -43,3 +43,7 @@ tasks.test {
   // Use junit platform for unit tests.
   useJUnitPlatform()
 }
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+  kotlinOptions { jvmTarget = JavaVersion.VERSION_1_8.toString() }
+}

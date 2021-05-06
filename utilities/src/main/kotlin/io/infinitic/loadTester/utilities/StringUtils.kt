@@ -3,15 +3,15 @@
  */
 package io.infinitic.loadTester.utilities
 
-import io.infinitic.loadTester.launcher.LinkedList
+import io.infinitic.loadTester.launcher.Launcher
 
 class StringUtils {
     companion object {
-        fun join(source: LinkedList): String {
+        fun join(source: Launcher): String {
             return JoinUtils.join(source)
         }
 
-        fun split(source: String): LinkedList {
+        fun split(source: String): Launcher {
             return SplitUtils.split(source)
         }
     }

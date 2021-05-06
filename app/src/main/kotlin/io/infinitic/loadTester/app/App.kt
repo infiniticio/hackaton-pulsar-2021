@@ -3,12 +3,25 @@
  */
 package io.infinitic.loadTester.app
 
-import io.infinitic.loadTester.utilities.StringUtils
+import com.xenomachina.argparser.ArgParser
+import com.xenomachina.argparser.mainBody
+import io.infinitic.loadTester.app.webserver.Http4kHttpServer
+import io.infinitic.pulsar.InfiniticWorker
+import org.slf4j.LoggerFactory
+import setupPulsar
 
-import org.apache.commons.text.WordUtils
-
-fun main() {
-    val tokens = StringUtils.split(MessageUtils.getMessage())
-    val result = StringUtils.join(tokens)
-    println(WordUtils.capitalize(result))
+fun main(args: Array<String>) = mainBody {
+    ArgParser(args).parseInto(::CliArgs).run {
+        val logger = LoggerFactory.getLogger("AppKt.main")
+        logger.info("Starting APP: $version - $configFilePath")
+        Http4kHttpServer(port).startServer()
+        logger.info("Webserver started")
+        when (version) {
+            Version.SetupPulsar -> setupPulsar(configFilePath)
+            Version.Launcher -> TODO()
+            Version.Workflow -> InfiniticWorker.fromConfigFile(configFilePath).start()
+            Version.Task -> InfiniticWorker.fromConfigFile(configFilePath).start()
+        }
+    }
 }
+

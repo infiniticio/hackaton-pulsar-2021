@@ -5,3 +5,12 @@
 plugins {
     id("io.infinitic.loadTester.kotlin-library-conventions")
 }
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+    kotlinOptions { jvmTarget = JavaVersion.VERSION_1_8.toString() }
+}
+
+tasks.withType<JavaCompile> {
+    sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+    targetCompatibility = JavaVersion.VERSION_1_8.toString()
+}

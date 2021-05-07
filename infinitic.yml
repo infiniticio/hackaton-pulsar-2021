@@ -30,7 +30,7 @@ scenario:
   name: io.infinitic.loadTester.engine.workflow.HackatonWkf
 
   launches:
-    - duration: 3600 seconds
-      number: 18000
+    - duration: 10 seconds
+      number: 100
       shape: flat
 

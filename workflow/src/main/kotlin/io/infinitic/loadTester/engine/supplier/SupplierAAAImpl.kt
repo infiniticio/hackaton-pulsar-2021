@@ -8,20 +8,15 @@ import org.slf4j.LoggerFactory
 class SupplierAAAImpl : Task(), SupplierAAA {
   private val logger = LoggerFactory.getLogger(javaClass)
 
-  override fun reserveStock(product: String): Boolean {
+  override fun checkStock(product: String): Boolean {
     Thread.sleep(Random.nextLong(1000))
     PrometheusRegistry.registry.counter("supplierAAA_reserveStock").increment()
     logger.info("Supplier AAA - reserveStock ${context.workflowId}")
     return Random.nextBoolean()
   }
 
-  override fun getProduct(product: String) {
+  override fun orderProduct(product: String) {
     PrometheusRegistry.registry.counter("supplierAAA_getProduct").increment()
     logger.info("Supplier AAA - getProduct ${context.workflowId}")
-  }
-
-  override fun cancelStock(product: String) {
-    PrometheusRegistry.registry.counter("supplierAAA_cancelStock").increment()
-    logger.info("Supplier AAA - cancelStock ${context.workflowId}")
   }
 }

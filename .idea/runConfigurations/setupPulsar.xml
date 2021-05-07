@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="setupPulsar" type="JetRunConfigurationType">
+    <option name="MAIN_CLASS_NAME" value="io.infinitic.loadTester.app.AppKt" />
+    <module name="infinitic-load-tester.app.main" />
+    <option name="PROGRAM_PARAMETERS" value="--setup-pulsar -f infinitic.yml -p 3003" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

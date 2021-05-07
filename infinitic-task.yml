@@ -21,11 +21,6 @@ tasks:
   class: io.infinitic.loadTester.engine.supplier.SupplierBBBImpl
   concurrency: 40
 
-workflows:
-- name: io.infinitic.loadTester.engine.workflow.HackatonWkf
-  class: io.infinitic.loadTester.engine.workflow.HackatonWkfImpl
-  concurrency: 40
-
 scenario:
   name: io.infinitic.loadTester.engine.workflow.HackatonWkf
 

@@ -22,14 +22,14 @@ scrape_configs:
   scrape_interval: 15s
   static_configs:
   - targets: ['localhost:9090','node-exporter:9100','cadvisor:8080']
-- job_name: 'pulsar'
-  scrape_interval: 5s
-  static_configs:
-  - targets: ['pulsar-standalone:8080']
+#- job_name: 'pulsar'
+#  scrape_interval: 5s
+#  static_configs:
+#  - targets: ['pulsar-standalone:8080']
 - job_name: 'worker'
   scrape_interval: 1s
   static_configs:
-  - targets: ['10.11.129.242:3002']
+  - targets: ['10.11.129.242:3002','10.11.129.242:3003','10.11.129.242:3004','10.11.129.242:3005','10.11.129.242:3006']
 - job_name: 'launcher'
   scrape_interval: 1s
   static_configs:

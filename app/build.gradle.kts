@@ -14,6 +14,7 @@ dependencies {
   implementation(Libs.Logback.classic)
   implementation(project(":launcher"))
   implementation(project(":workflow"))
+  implementation(project(":config"))
 }
 
 application {

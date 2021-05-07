@@ -5,22 +5,42 @@ package io.infinitic.loadTester.app
 
 import com.xenomachina.argparser.ArgParser
 import com.xenomachina.argparser.mainBody
+import io.infinitic.config.WorkerConfig
+import io.infinitic.config.loaders.loadConfigFromFile
 import io.infinitic.loadTester.app.webserver.Http4kHttpServer
 import io.infinitic.loadTester.launcher.Launcher
 import io.infinitic.pulsar.InfiniticWorker
+import java.net.URL
+import org.apache.pulsar.client.api.PulsarClient
+import org.apache.pulsar.client.impl.auth.oauth2.AuthenticationFactoryOAuth2
 import org.slf4j.LoggerFactory
 import setupPulsar
 
 fun main(args: Array<String>) = mainBody {
-    ArgParser(args).parseInto(::CliArgs).run {
-        val logger = LoggerFactory.getLogger("AppKt.main")
-        logger.info("Starting APP: $version - $configFilePath")
-        Http4kHttpServer(port).startServer()
-        logger.info("Webserver started")
-        when (version) {
-            Action.SetupPulsar -> setupPulsar(configFilePath)
-            Action.Launcher -> Launcher.fromConfigFile(configFilePath).start()
-            Action.Worker -> InfiniticWorker.fromConfigFile(configFilePath).start()
-        }
+  ArgParser(args).parseInto(::CliArgs).run {
+    val logger = LoggerFactory.getLogger("AppKt.main")
+    logger.info("Starting APP: $version - $configFilePath")
+    Http4kHttpServer(port).startServer()
+    logger.info("Webserver started")
+    when (version) {
+      Action.SetupPulsar -> setupPulsar(configFilePath)
+      Action.Launcher -> {
+        Launcher.fromConfigFile(configFilePath).start()
+      }
+      Action.Worker -> {
+        val issuerUrl = "https://auth.streamnative.cloud"
+        val credentialsUrl = "file:///Users/mjacquet/.sncloud/zenaton-matthieu.json"
+        val audience = "urn:sn:pulsar:zenaton:hackathon"
+        val client =
+            PulsarClient.builder()
+                .serviceUrl("pulsar+ssl://hackathon.zenaton.snio.cloud:6651")
+                .authentication(
+                    AuthenticationFactoryOAuth2.clientCredentials(
+                        URL(issuerUrl), URL(credentialsUrl), audience))
+                .build()
+        val config: WorkerConfig = loadConfigFromFile(listOf(configFilePath))
+        InfiniticWorker.from(client, config).start()
+      }
     }
+  }
 }

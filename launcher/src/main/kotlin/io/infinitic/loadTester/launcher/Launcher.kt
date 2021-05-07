@@ -25,7 +25,7 @@ class Launcher(
         @JvmStatic
         fun fromConfigFile(file: String): Launcher {
             val issuerUrl = "https://auth.streamnative.cloud"
-            val credentialsUrl = "file:///Users/gilles/.sncloud/zenaton-gilles.json"
+            val credentialsUrl = "file:///Users/mjacquet/.sncloud/zenaton-matthieu.json"
             val audience = "urn:sn:pulsar:zenaton:hackathon"
             val pulsarClient = PulsarClient.builder()
                 .serviceUrl("pulsar+ssl://hackathon.zenaton.snio.cloud:6651")

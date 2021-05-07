@@ -14,16 +14,8 @@ pulsar:
   namespace: hackathon
 
 tasks:
-- name: io.infinitic.loadTester.engine.supplier.SupplierAAA
-  class: io.infinitic.loadTester.engine.supplier.SupplierAAAImpl
-  concurrency: 40
 - name: io.infinitic.loadTester.engine.supplier.SupplierBBB
   class: io.infinitic.loadTester.engine.supplier.SupplierBBBImpl
-  concurrency: 40
-
-workflows:
-- name: io.infinitic.loadTester.engine.workflow.HackatonWkf
-  class: io.infinitic.loadTester.engine.workflow.HackatonWkfImpl
   concurrency: 40
 
 scenario:

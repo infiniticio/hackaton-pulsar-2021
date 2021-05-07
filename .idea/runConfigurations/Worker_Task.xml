@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Worker Task" type="JetRunConfigurationType">
+    <option name="MAIN_CLASS_NAME" value="io.infinitic.loadTester.app.AppKt" />
+    <module name="infinitic-load-tester.app.main" />
+    <option name="PROGRAM_PARAMETERS" value="--worker -f infinitic-task.yml -p 3004" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

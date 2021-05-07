@@ -4,6 +4,7 @@ import io.infinitic.loadTester.engine.PrometheusRegistry
 import io.infinitic.loadTester.engine.supplier.SupplierAAA
 import io.infinitic.loadTester.engine.supplier.SupplierBBB
 import io.infinitic.workflows.Channel
+import io.infinitic.workflows.Deferred
 import io.infinitic.workflows.Workflow
 import io.infinitic.workflows.or
 
@@ -14,18 +15,20 @@ class HackatonWkfImpl : Workflow(), HackatonWkf {
 
   override fun handle(data: String) {
     inline { PrometheusRegistry.registry.counter("workflow_start").increment() }
-    val supplierAAA = async {
-      supplierAAAService.reserveStock(data)
-      supplierAAAService.getProduct(data)
+
+    val resultSupplierAAA: Deferred<Boolean> = async {
+      supplierAAAService.reserveStock(data).also { supplierAAAService.getProduct(data) }
     }
-    val supplierBBB = async {
-      supplierBBBService.reserveStock(data)
-      supplierBBBService.getProduct(data)
+    val resultSupplierBBB: Deferred<Boolean> = async {
+      supplierBBBService.reserveStock(data).also { supplierBBBService.getProduct(data) }
     }
-    (supplierAAA or supplierBBB).await()
+    (resultSupplierBBB or resultSupplierAAA).await()
     when {
-      supplierAAA.isCompleted() -> supplierBBBService.cancelStock(data)
-      supplierBBB.isCompleted() -> supplierAAAService.cancelStock(data)
+      resultSupplierBBB.isCompleted() && resultSupplierBBB.await() ->
+          supplierAAAService.cancelStock(data)
+      resultSupplierAAA.isCompleted() && resultSupplierAAA.await() ->
+          supplierBBBService.cancelStock(data)
+      else -> inline { PrometheusRegistry.registry.counter("no_supplier").increment() }
     }
     inline { PrometheusRegistry.registry.counter("workflow_end").increment() }
   }

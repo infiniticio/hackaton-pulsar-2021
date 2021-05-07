@@ -37,6 +37,7 @@ services:
     - 9090:9090
     links:
     - node-exporter:node-exporter
+    - cadvisor:cadvisor
     - pulsar-standalone:pulsar-standalone
 
   cadvisor:

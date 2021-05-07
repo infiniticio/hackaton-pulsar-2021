@@ -1,0 +1,898 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 3,
+  "links": [],
+  "panels": [
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 2,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.5",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "rate(workflow_launch_total[$__interval]) ",
+          "interval": "",
+          "legendFormat": "Launched Workflows",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "rate(workflow_start_total[$__interval]) ",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Started Workflows",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "rate(workflow_end_total[$__interval]) ",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Finished Workflows",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Workflows Rate",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:839",
+          "format": "ops",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:840",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "hiddenSeries": false,
+      "id": 4,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.5",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "increase(workflow_launch_total[$__interval]) ",
+          "interval": "",
+          "legendFormat": "Launched Workflows",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "increase(workflow_start_total[$__interval]) ",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Started Workflows",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "increase(workflow_end_total[$__interval]) ",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Finished Workflows",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Workflows execution",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:951",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:952",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 7,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.5",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "rate(supplierBBB_getProduct_total[$__interval]) ",
+          "interval": "",
+          "legendFormat": "supplierBBB_getProduct",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "rate(supplierBBB_reserveStock_total[$__interval]) ",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "supplierBBB_reserveStock",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "rate(supplierBBB_cancelStock_total[$__interval]) ",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "supplierBBB_cancelStock",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "rate(supplierAAA_getProduct_total[$__interval]) ",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "supplierAAA_getProduct",
+          "refId": "D"
+        },
+        {
+          "exemplar": true,
+          "expr": "rate(supplierAAA_reserveStock_total[$__interval]) ",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "supplierAAA_reserveStock",
+          "refId": "E"
+        },
+        {
+          "exemplar": true,
+          "expr": "rate(supplierAAA_cancelStock_total[$__interval]) ",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "supplierAAA_cancelStock",
+          "refId": "F"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Supplier Rate",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:786",
+          "format": "ops",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:787",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 8,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.5",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "increase(supplierBBB_getProduct_total[$__rate_interval]) ",
+          "interval": "",
+          "legendFormat": "supplierBBB_getProduct",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "increase(supplierBBB_reserveStock_total[$__rate_interval]) ",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "supplierBBB_reserveStock",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "increase(supplierBBB_cancelStock_total[$__rate_interval]) ",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "supplierBBB_cancelStock",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "increase(supplierAAA_getProduct_total[$__rate_interval]) ",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "supplierAAA_getProduct",
+          "refId": "D"
+        },
+        {
+          "exemplar": true,
+          "expr": "increase(supplierAAA_reserveStock_total[$__rate_interval]) ",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "supplierAAA_reserveStock",
+          "refId": "E"
+        },
+        {
+          "exemplar": true,
+          "expr": "increase(supplierAAA_cancelStock_total[$__rate_interval]) ",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "supplierAAA_cancelStock",
+          "refId": "F"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Supplier Exec",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:786",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:787",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 19
+      },
+      "hiddenSeries": false,
+      "id": 3,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.5",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "workflow_launch_total",
+          "interval": "",
+          "legendFormat": "Launched Workflows",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "workflow_start_total",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Started Workflows",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "workflow_end_total",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Finished Workflows",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Workflow Counter values",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 19
+      },
+      "hiddenSeries": false,
+      "id": 9,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.5",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "supplierBBB_getProduct_total",
+          "interval": "",
+          "legendFormat": "supplierBBB_getProduct",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "supplierBBB_reserveStock_total",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "supplierBBB_reserveStock",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "supplierBBB_cancelStock_total",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "supplierBBB_cancelStock",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "supplierAAA_getProduct_total",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "supplierAAA_getProduct",
+          "refId": "D"
+        },
+        {
+          "exemplar": true,
+          "expr": "supplierAAA_reserveStock_total",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "supplierAAA_reserveStock",
+          "refId": "E"
+        },
+        {
+          "exemplar": true,
+          "expr": "supplierAAA_cancelStock_total",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "supplierAAA_cancelStock",
+          "refId": "F"
+        },
+        {
+          "exemplar": true,
+          "expr": "no_supplier_total",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "No Supplier",
+          "refId": "G"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Supplier Exec",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:786",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:787",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 27
+      },
+      "hiddenSeries": false,
+      "id": 6,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.5",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "increase(supplierAAA_getProduct_total[$__rate_interval]) ",
+          "interval": "",
+          "legendFormat": "supplierAAA_getProduct",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "increase(supplierAAA_reserveStock_total[$__rate_interval]) ",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "supplierAAA_reserveStock",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "increase(supplierAAA_cancelStock_total[$__rate_interval]) ",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "supplierAAA_cancelStock",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "SupplierAAA Task Exec",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 27,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "Infinitic Workflow",
+  "uid": "k5o8EnjGz",
+  "version": 5
+}

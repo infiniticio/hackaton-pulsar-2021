@@ -7,6 +7,7 @@ import io.infinitic.clients.InfiniticClient
 import io.infinitic.config.loaders.loadConfigFromFile
 import io.infinitic.loadTester.config.LauncherConfig
 import io.infinitic.loadTester.config.Shape
+import io.infinitic.loadTester.engine.PrometheusRegistry
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -55,5 +56,6 @@ class Launcher(
     private fun dispatch(index: Int) {
         val w = client.newWorkflow(config.scenario.klass)
         client.async(w) { handle("$index") }
+        PrometheusRegistry.registry.counter("workflow_launch").increment()
     }
 }

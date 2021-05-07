@@ -4,14 +4,14 @@
 
 import io.infinitic.loadTester.Libs
 
-plugins {
-    id("io.infinitic.loadTester.kotlin-library-conventions")
-}
+plugins { id("io.infinitic.loadTester.kotlin-library-conventions") }
 
 dependencies {
-    implementation(Libs.Infinitic.pulsar)
-    implementation(Libs.Infinitic.client)
-    implementation(Libs.Coroutines.core)
+  implementation(Libs.Infinitic.pulsar)
+  implementation(Libs.Infinitic.client)
+  implementation(Libs.Coroutines.core)
+  implementation(Libs.MicroMeter.prometheus)
 
-    api(project(":config"))
+  api(project(":config"))
+  api(project(":workflow"))
 }

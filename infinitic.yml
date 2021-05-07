@@ -16,24 +16,21 @@ pulsar:
 tasks:
   - name: io.infinitic.loadTester.engine.supplier.SupplierAAA
     class: io.infinitic.loadTester.engine.supplier.SupplierAAAImpl
-    concurrency: 1
+    concurrency: 10
   - name: io.infinitic.loadTester.engine.supplier.SupplierBBB
     class: io.infinitic.loadTester.engine.supplier.SupplierBBBImpl
-    concurrency: 1
+    concurrency: 10
 
 workflows:
   - name: io.infinitic.loadTester.engine.workflow.HackatonWkf
     class: io.infinitic.loadTester.engine.workflow.HackatonWkfImpl
-    concurrency: 1
+    concurrency: 10
 
 scenario:
   name: io.infinitic.loadTester.engine.workflow.HackatonWkf
 
   launches:
-    - duration: 10 seconds
-      number: 100
-      shape: flat
-    - duration: 10 seconds
-      number: 100
+    - duration: 3600 seconds
+      number: 18000
       shape: flat
 

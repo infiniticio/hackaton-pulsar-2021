@@ -4,6 +4,7 @@
 package io.infinitic.loadTester.launcher
 
 import io.infinitic.clients.InfiniticClient
+import io.infinitic.config.ClientConfig
 import io.infinitic.config.loaders.loadConfigFromFile
 import io.infinitic.loadTester.config.LauncherConfig
 import io.infinitic.loadTester.config.Shape
@@ -11,6 +12,10 @@ import io.infinitic.loadTester.engine.PrometheusRegistry
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import org.apache.pulsar.client.admin.PulsarAdmin
+import org.apache.pulsar.client.api.PulsarClient
+import org.apache.pulsar.client.impl.auth.oauth2.AuthenticationFactoryOAuth2
+import java.net.URL
 
 class Launcher(
     private val client: InfiniticClient,
@@ -19,7 +24,19 @@ class Launcher(
     companion object {
         @JvmStatic
         fun fromConfigFile(file: String): Launcher {
-            val client = io.infinitic.pulsar.InfiniticClient.fromConfigFile(file)
+            val issuerUrl = "https://auth.streamnative.cloud"
+            val credentialsUrl = "file:///Users/gilles/.sncloud/zenaton-gilles.json"
+            val audience = "urn:sn:pulsar:zenaton:hackathon"
+            val pulsarClient = PulsarClient.builder()
+                .serviceUrl("pulsar+ssl://hackathon.zenaton.snio.cloud:6651")
+                .authentication(
+                    AuthenticationFactoryOAuth2.clientCredentials(URL(issuerUrl), URL(credentialsUrl), audience)
+                )
+                .build()
+
+            val clientConfig = loadConfigFromFile<ClientConfig>(listOf(file))
+
+            val client = io.infinitic.pulsar.InfiniticClient.from(pulsarClient, clientConfig)
 
             val config = loadConfigFromFile<LauncherConfig>(listOf(file))
 
